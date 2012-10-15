@@ -52,7 +52,9 @@ defineTable
             };
             
             onTap = ^{
-                [controller registerUser];
+                if (controller.somethingHappened) {
+                    [controller registerUser];
+                }
             };
         }
     }

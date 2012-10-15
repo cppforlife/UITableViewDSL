@@ -7,7 +7,7 @@
 // * controller's description is called
 //   to avoid compiler warning for unused variables
 #define  defineTable  - (void)setUpTable{                                       \
-                        __block id controller = self;                           \
+                        __block typeof(self) controller = self;                 \
                         [controller description];                               \
                         TTable *table = self.table = [[[TTable alloc] init] autorelease];
 
