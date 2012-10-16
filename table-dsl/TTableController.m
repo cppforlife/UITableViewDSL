@@ -4,7 +4,7 @@
 #import "TRow.h"
 
 @implementation TTableController
-@synthesize table = table_;
+@synthesize table = _table;
 
 - (void)setUpTable {
     NSAssert(NO, @"Subclasses must overwrite this method either manually or with the help of TDSL.h");
@@ -16,38 +16,37 @@
 }
 
 - (void)viewDidUnload {
-    [table_ release];
-    table_ = nil;
+    self.table = nil;
     [super viewDidLoad];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [table_ numberOfSections];
+    return self.table.numberOfSections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[table_ sectionAtIndex:section] numberOfRows];
+    return [[self.table sectionAtIndex:section] numberOfRows];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [[[table_ sectionAtIndex:indexPath.section] rowAtIndex:indexPath.row] buildForTableView:tableView];
+    return [[[self.table sectionAtIndex:indexPath.section] rowAtIndex:indexPath.row] buildForTableView:tableView];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [[[table_ sectionAtIndex:indexPath.section] rowAtIndex:indexPath.row] tap];
+    return [[[self.table sectionAtIndex:indexPath.section] rowAtIndex:indexPath.row] tap];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [[table_ sectionAtIndex:section] header];
+    return [[self.table sectionAtIndex:section] header];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    return [[table_ sectionAtIndex:section] footer];
+    return [[self.table sectionAtIndex:section] footer];
 }
 
 #pragma - Misc
 
 - (UITableViewCell *)memoizedCell:(NSString *)identifier {
-    return [[table_ memoizedRowWithIdentifier:identifier] memoizedCell];
+    return [[self.table memoizedRowWithIdentifier:identifier] memoizedCell];
 }
 @end

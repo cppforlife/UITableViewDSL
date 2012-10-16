@@ -2,11 +2,11 @@
 #import "TRow.h"
 
 @implementation TSection
-@synthesize header, footer;
+@synthesize header = _header, footer = _footer, rows = _rows;
 
 - (id)init {
     if (self = [super init]) {
-        rows_ = [[NSMutableArray alloc] init];
+        self.rows = [NSMutableArray array];
     }
     return self;
 }
@@ -14,26 +14,26 @@
 - (void)dealloc {
     self.header = nil;
     self.footer = nil;
-    [rows_ release];
+    self.rows = nil;
     [super dealloc];
 }
 
 - (TRow *)blankRow {
     TRow *row = [[[TRow alloc] init] autorelease];
-    [rows_ addObject:row];
+    [self.rows addObject:row];
     return row;
 }
 
 - (NSInteger)numberOfRows {
-    return rows_.count;
+    return self.rows.count;
 }
 
 - (TRow *)rowAtIndex:(NSInteger)index {
-    return [rows_ objectAtIndex:index];
+    return [self.rows objectAtIndex:index];
 }
 
 - (TRow *)memoizedRowWithIdentifier:(NSString *)identifier {
-    for (TRow *row in rows_) {
+    for (TRow *row in self.rows) {
         if (row.isMemoized && [row.identifier isEqualToString:identifier])
             return row;
     }

@@ -3,35 +3,37 @@
 #import "TRow.h"
 
 @implementation TTable
+@synthesize sections = _sections;
+
 - (id)init {
     if (self = [super init]) {
-        sections_ = [[NSMutableArray alloc] init];
+        self.sections = [NSMutableArray array];
     }
     return self;
 }
 
 - (void)dealloc {
-    [sections_ release];
+    self.sections = nil;
     [super dealloc];
 }
 
 - (TSection *)blankSection {
     TSection *section = [[[TSection alloc] init] autorelease];
-    [sections_ addObject:section];
+    [self.sections addObject:section];
     return section;
 }
 
 - (NSInteger)numberOfSections {
-    return sections_.count;
+    return self.sections.count;
 }
 
 - (TSection *)sectionAtIndex:(NSInteger)index {
-    return [sections_ objectAtIndex:index];
+    return [self.sections objectAtIndex:index];
 }
 
 - (TRow *)memoizedRowWithIdentifier:(NSString *)identifier {
     TRow *memoizedRow = nil;
-    for (TSection *section in sections_) {
+    for (TSection *section in self.sections) {
         if ((memoizedRow = [section memoizedRowWithIdentifier:identifier])) break;
     }
     return memoizedRow;

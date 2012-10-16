@@ -1,8 +1,8 @@
 @class TSection, TRow;
 
-@interface TTable : NSObject {
-    NSMutableArray *sections_;
-}
+@interface TTable : NSObject
+@property (nonatomic, retain) NSMutableArray *sections;
+
 - (TSection *)blankSection;
 - (NSInteger)numberOfSections;
 - (TSection *)sectionAtIndex:(NSInteger)index;
