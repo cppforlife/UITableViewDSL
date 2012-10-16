@@ -1,6 +1,7 @@
 #import "SimpleCell.h"
 
 @implementation SimpleCell
+@synthesize textField = _textField;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {

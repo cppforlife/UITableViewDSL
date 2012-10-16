@@ -2,14 +2,13 @@
 #import "TSection.h"
 #import "TRow.h"
 
-// * use controller local variable inside blocks to
-//   avoid having self retained which will cause a retain cycle
-// * controller's description is called
-//   to avoid compiler warning for unused variables
-#define  defineTable  - (void)setUpTable{                                       \
+// - use `controller` local var inside blocks to avoid having self retained
+// - `[controller description]` avoids compiler warning for unused variable
+#define  defineTable  - (void)setUpTable {                                      \
                         __block typeof(self) controller = self;                 \
+                        __block TTable *table = self.table =                    \
+                            [[[TTable alloc] init] autorelease];                \
                         [controller description];                               \
-                        TTable *table = self.table = [[[TTable alloc] init] autorelease];
 
 #define  addSection  for (__block TSection *section = table.blankSection; section;) \
                         for (id                                                 \

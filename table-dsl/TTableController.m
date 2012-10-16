@@ -7,7 +7,7 @@
 @synthesize table = table_;
 
 - (void)setUpTable {
-    // raise, overwritten in subclasses
+    NSAssert(NO, @"Subclasses must overwrite this method either manually or with the help of TDSL.h");
 }
 
 - (void)viewDidLoad {

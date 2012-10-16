@@ -2,6 +2,8 @@
 #import "SimpleTableController.h"
 
 @implementation AppDelegate
+@synthesize window = _window;
+
 - (void)dealloc {
     [_window release];
     [super dealloc];

@@ -5,7 +5,7 @@ typedef void (^CustomizeBlock)(UITableViewCell *);
 typedef void (^TapBlock)(void);
 
 @implementation TRow
-@synthesize className, identifier, text, detail, build, customize, onTap, memoize;
+@synthesize className, identifier, text, detail, build, customize, onTap, memoize, memoizedCell;
 
 - (void)dealloc {
     self.className = nil;
