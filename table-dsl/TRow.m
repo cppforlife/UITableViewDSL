@@ -42,7 +42,9 @@ typedef void (^TapBlock)(void);
 
     if (self.text) cell.textLabel.text = self.text;
     if (self.detail) cell.detailTextLabel.text = self.detail;
+
     if (self.customize) ((CustomizeBlock)self.customize)(cell);
+    if ([cell respondsToSelector:@selector(customize)]) [(id)cell customize];
     return cell;
 }
 
